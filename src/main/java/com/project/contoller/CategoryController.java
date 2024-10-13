@@ -30,7 +30,7 @@ public class CategoryController {
         return categoryService.updateById(id,category);
     }
 
-    @DeleteMapping("/admin/delete/{id}")
+    @DeleteMapping("/admin/category/delete/{id}")
     public ResponseEntity<Object> deleteById(@PathVariable("id") int id)
     {
         return categoryService.deleteById(id);

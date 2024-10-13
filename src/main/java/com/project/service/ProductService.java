@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,5 +52,13 @@ public class ProductService {
         getById(id);
         productRepository.deleteById(id);
         return new ResponseEntity<>("Product deleted Successfully",HttpStatus.OK);
+    }
+
+    public String getPrice(int id){
+        System.out.println("hello ansh verma.........");
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isEmpty()) return null;
+        System.out.println("hello brother............");
+        return product.get().getProductPrice();
     }
 }

@@ -25,6 +25,16 @@ public class DiscountCouponController {
         return discountCouponService.getById(id);
     }
 
+    @GetMapping("/access/coupon/condition/{id}")
+    public int getCouponById(@PathVariable("id") String id) {
+        return discountCouponService.getCouponById(id);
+    }
+
+    @GetMapping("/access/coupon/discount/{id}")
+    public int getPercent(@PathVariable("id") String id) {
+        return discountCouponService.getPercent(id);
+    }
+
     @PostMapping("/admin/coupon/update/{id}")
     public ResponseEntity<Object> updateById(@RequestBody DiscountCoupon discountCoupon,
                                              @PathVariable("id") String id)

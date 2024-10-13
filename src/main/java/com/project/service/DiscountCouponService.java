@@ -54,4 +54,21 @@ public class DiscountCouponService {
         return discountCoupon.get();
     }
 
+    public int getCouponById(String couponName)
+    {
+        Optional<DiscountCoupon> coupon = discountCouponRepository.findById(couponName);
+        if(coupon.isEmpty()){
+            return -1;
+        }
+        return coupon.get().getCouponCondition();
+    }
+    public int getPercent(String couponName)
+    {
+        Optional<DiscountCoupon> coupon = discountCouponRepository.findById(couponName);
+        if(coupon.isEmpty()){
+            return -1;
+        }
+        return coupon.get().getCouponPercentage();
+    }
+
 }

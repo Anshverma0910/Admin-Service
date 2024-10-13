@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/product")
 public class ProductController {
 
     @Autowired
@@ -48,6 +47,12 @@ public class ProductController {
                                              @PathVariable("id") int id)
     {
         return productService.updateById(product,id);
+    }
+
+    @GetMapping("/product/price/{id}")
+    public String getPrice(@PathVariable("id") int id)
+    {
+        return productService.getPrice(id);
     }
 
     @DeleteMapping("/admin/product/delete/{id}")
