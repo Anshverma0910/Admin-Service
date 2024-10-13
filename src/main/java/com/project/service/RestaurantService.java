@@ -4,6 +4,7 @@ import com.project.entity.Restaurant;
 import com.project.exception.restaurant.RestaurantNotFoundException;
 
 import com.project.repository.RestaurantRepository;
+import com.project.serviceinterface.RestaurantServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,17 +16,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RestaurantService {
+public class RestaurantService implements RestaurantServiceInterface {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
 
 
+    @Override
     public List<Restaurant> getAllRestaurant()
     {
         return restaurantRepository.findAll();
     }
 
+    @Override
     public ResponseEntity<Object> addRestaurant(Restaurant restaurant)
     {
         restaurant.setRestaurantCreated(new Date().toString());
@@ -39,6 +42,7 @@ public class RestaurantService {
         }
     }
 
+    @Override
     public Restaurant getById(int id)
     {
         Optional<Restaurant> byId = restaurantRepository.findById(id);
@@ -49,6 +53,7 @@ public class RestaurantService {
         return r1;
     }
 
+    @Override
     public ResponseEntity<Object> updateRestaurant(Restaurant restaurant, int id)
     {
         Restaurant newrestaurant = getById(id);
@@ -64,6 +69,7 @@ public class RestaurantService {
         return new ResponseEntity<>("Restaurant Updated Successfully",HttpStatus.ACCEPTED);
     }
 
+    @Override
     public ResponseEntity<Object> deleteById(@PathVariable("id") int id)
     {
         restaurantRepository.deleteById(id);
