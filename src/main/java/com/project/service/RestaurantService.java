@@ -72,6 +72,7 @@ public class RestaurantService implements RestaurantServiceInterface {
     @Override
     public ResponseEntity<Object> deleteById(@PathVariable("id") int id)
     {
+        getById(id);
         restaurantRepository.deleteById(id);
         return new ResponseEntity<>("Restaurant has been Deleted Successfully",HttpStatus.OK);
 

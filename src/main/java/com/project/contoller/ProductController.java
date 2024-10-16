@@ -35,6 +35,12 @@ public class ProductController {
         return productService.getById(id);
     }
 
+    @GetMapping("product/getproduct/{id}")
+    public String getProduct(@PathVariable("id") int id)
+    {
+        return productService.getPrice(id);
+    }
+
     @PostMapping("/admin/product/add")
     public ResponseEntity<Object> add(@RequestBody Product product)
     {
